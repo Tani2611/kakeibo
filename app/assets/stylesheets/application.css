@@ -1,0 +1,106 @@
+body {
+  width: 90%;
+  margin: 0 auto;
+
+}
+h1 {
+  background: #b9fabf;
+  margin: 0;
+}
+ul {
+  display: flex;
+  padding: 0;
+}
+li {
+  list-style: none;
+  margin-right: 20px;
+}
+.select {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.form {
+  width: 45%;
+  text-align: center;
+  margin-top: 50px;
+}
+.link {
+  text-decoration: none;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+
+
+.date {
+  width: 45%;
+  text-align: center;
+}
+
+
+.box {
+  width: 45%;
+}
+.flex {
+  width: 100%;
+  display: flex;
+}
+
+
+.a {
+  width: 30%;
+}
+.aa {
+  width: 50%;
+  margin-top: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+.b {
+  width: 30%;
+  text-align: end;
+}
+.bb {
+  width: 50%;
+  margin-top: 20px;
+  text-align: end;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+.c {
+  width: 10%;
+}
+.cc {
+  width: 10%;
+  margin-top: 20px;
+
+}
+
+
+
+/* 郢ｧ�ｴ郢晄ｺｽ�ｮ�ｱ郢ｧ�｢郢ｧ�､郢ｧ�ｳ郢晢ｽｳ */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000;
+}
+.icon-button svg {
+  width: 20px;
+  height: 20px;
+}
+.icon-button:hover svg {
+  color: #ff0000;
+}
+/* 驍ｱ�ｨ鬮ｮ�ｽ�ｽ郢ｧ�ｿ郢晢ｽｳ */
+.icon {
+  color: #7d7d7d;
+}

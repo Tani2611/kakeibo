@@ -1,0 +1,24 @@
+<h1><%= @category_id.name %></h1>
+
+
+<div class="box">
+  <% @category_in_payment.each do |payment| %>
+  <% @payment_in_list = List.where(payment_id: payment.id) %>
+    <div class="flex">
+      <div class="aa"><%= payment.name %></div>
+      <div class="bb"><%= @payment_in_list.sum(:price) %>円</div>
+    </div>
+    <% @payment_in_list.each do |list| %>
+      <div class="flex">
+        <div class="a"><%= list.name %></div>
+        <div class="b"><%= list.price %>円</div>
+        <div class="c"><%= button_to "/list_delete/#{list.id}", method: :delete, class: 'icon-button' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6L17.35 20.74A2 2 0 0 1 15.37 22H8.63A2 2 0 0 1 6.65 20.74L5 6M10 11V17M14 11V17"></path>
+            <rect x="9" y="2" width="6" height="2"></rect>
+            </svg><% end %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

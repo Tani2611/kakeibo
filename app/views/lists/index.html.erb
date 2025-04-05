@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="form">
+    <%= form_with url: "/list_new", method: :post do |f| %>
+      <%= f.collection_select :category_id, @categories, :id, :name, { include_blank: "項目" }, { class: "select", id: "category" } %>
+      
+      <div id="payment-container">
+        <%= f.select :payment, [], { include_blank: "支払い方法" }, { class: "select" } %>
+      </div>
+
+      <%= f.text_field :name, placeholder: "内容", class: "select" %><br>
+      <%= f.text_field :price, placeholder: "金額", class: "select" %><br>
+      <%= f.submit "保存", class: "submit", style: "width: 100px;"%>
+
+      <% @categories.each do |category| %>
+        <template id="payment-of-category<%= category.id %>">
+          <select name="payment_id" id="payment">
+            <option value="">支払い方法</option>
+            <% category.payments.each do |pay| %>
+              <option value="<%= pay.id %>"><%= pay.name %></option>
+            <% end %>
+          </select>
+        </template>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="date">
+    <%= pie_chart @data %>
+  </div>
+</div>
+
+
+
+<div class="container">
+
+  <div class="box">
+    <div class="flex">
+      <div class="aa">合計</div>
+      <div class="bb"><%= @all_sum %>円</div>
+    </div>
+
+    <% @lists.each do |list| %>
+    <% @all_item = Category.find_by(id: list.category_id) %>
+      <div class="flex">
+        <div class="a"><%= @all_item.name %></div>
+        <div class="a"><%= list.name %></div>
+        <div class="b"><%= list.price %>円</div>
+        <div class="c"><%= button_to "/list_delete/#{list.id}", method: :delete, class: 'icon-button' do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6L17.35 20.74A2 2 0 0 1 15.37 22H8.63A2 2 0 0 1 6.65 20.74L5 6M10 11V17M14 11V17"></path>
+            <rect x="9" y="2" width="6" height="2"></rect>
+            </svg><% end %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="box">
+    <% @categories.each do |category| %>
+    <% @pay_in_category = Payment.where(category_id: category.id) %>
+    <% @list_in_category = List.where(category_id: category.id) %>
+      <div class="flex">
+        <div class="aa"><%= link_to "#{category.name}", "/list_category/#{category.id}", class: "link"%></div>
+        <div class="bb"><%= @list_in_category.sum(:price) %>円</div>
+      </div>
+
+      <% @pay_in_category.each do |pay| %><% @list_in_pay = List.where(payment_id: pay.id) %>
+        <div class="flex">
+          <div class="a"><%= pay.name %></div>
+          <div class="b"><%= @list_in_pay.sum(:price) %>円</div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

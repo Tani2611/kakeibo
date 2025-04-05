@@ -1,0 +1,38 @@
+<div class="box">
+
+  <%= form_tag("/category_new") do %>
+    <input name="name" placeholder="カテゴリー追加">
+    <input type="submit" value="保存">
+  <% end %>
+
+  <% @categories.each do |category| %><% @pay_in_category = Payment.where(category_id: category.id) %>
+    <div class="flex">
+      <div class="aa"><%= category.name %></div>
+      <div class="cc"><%= button_to "/category_delete/#{category.id}", method: :delete, class: 'icon-button' do  %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3 6 5 6 21 6"></polyline>
+        <path d="M19 6L17.35 20.74A2 2 0 0 1 15.37 22H8.63A2 2 0 0 1 6.65 20.74L5 6M10 11V17M14 11V17"></path>
+        <rect x="9" y="2" width="6" height="2"></rect>
+        </svg><% end %></div>
+    </div>
+
+    <%= form_tag("/payment_new/#{category.id}") do %>
+        <input name="name" placeholder="支払追加">
+        <input type="submit" value="保存">
+    <% end %>
+
+    <% @pay_in_category.each do |pay| %>
+      <div class="flex">
+        <div class="a"><%= pay.name %></div>
+        <div class="c"><%= button_to "/payment_delete/#{pay.id}", method: :delete, class: 'icon-button' do  %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6L17.35 20.74A2 2 0 0 1 15.37 22H8.63A2 2 0 0 1 6.65 20.74L5 6M10 11V17M14 11V17"></path>
+          <rect x="9" y="2" width="6" height="2"></rect>
+          </svg><% end %></div>
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
